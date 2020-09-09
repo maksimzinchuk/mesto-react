@@ -4,7 +4,7 @@ class Api {
     this._headers = headers;
   }
 
-  _getError(res) {
+  _handleResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -15,13 +15,13 @@ class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   getUserData() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   saveUserData(inputValues) {
@@ -32,7 +32,7 @@ class Api {
         name: inputValues.name,
         about: inputValues.about,
       }),
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   addCard(inputs) {
@@ -43,28 +43,28 @@ class Api {
         name: inputs.name,
         link: inputs.link,
       }),
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   putLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: this._headers,
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   deleteLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 
   avatarChange(input) {
@@ -74,11 +74,11 @@ class Api {
       body: JSON.stringify({
         avatar: input.link,
       }),
-    }).then(this._getError);
+    }).then(this._handleResponse);
   }
 }
 
-export const ApiEntity = new Api({
+export const apiEntity = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-14",
   headers: {
     authorization: "53f63733-0798-40e6-804e-4dfb424b0ce2",

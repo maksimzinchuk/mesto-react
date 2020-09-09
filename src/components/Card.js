@@ -1,11 +1,14 @@
 import React from "react";
 
 export default function Card (props) {
+    function handleClick() {
+        props.onPreviewOpen(props.card);
+    }
     return (
         <div className="elements__item"
               >
             <img src={props.card.link} className="elements__image" alt={props.card.name}
-                 onClick={() => props.onPreviewOpen(props.card)}
+                 onClick={handleClick}
             />
             <div className="elements__trash"></div>
             <div className="elements__title-container">

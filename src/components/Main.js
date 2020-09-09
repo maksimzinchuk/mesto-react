@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import { ApiEntity } from './../utils/Api';
+import { apiEntity } from '../utils/api';
 
 export default function Main (props) {
     const [userName, setUserName] = React.useState('');
@@ -9,23 +9,16 @@ export default function Main (props) {
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
-            ApiEntity.getUserData()
-                .then(data => {
-                    setUserName(data.name);
-                    setUserDescription(data.about);
-                    setUserAvatar(data.avatar);
-                })
-                .catch((err) => {
-                    console.log(err); // выведем ошибку в консоль
-                });
-
-            ApiEntity.getInitialCards()
-                .then(data => {
-                    setCards(data);
-                })
-                .catch((err) => {
-                    console.log(err); // выведем ошибку в консоль
-                });
+        Promise.all([apiEntity.getUserData(), apiEntity.getInitialCards()])
+            .then(([result, data]) => {
+                setUserName(result.name);
+                setUserDescription(result.about);
+                setUserAvatar(result.avatar);
+                setCards(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
     return (

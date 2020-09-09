@@ -1,5 +1,4 @@
 import React from 'react';
-import '../index.css';
 import Header from './Header'
 import Main from "./Main";
 import Footer from "./Footer";
@@ -10,11 +9,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({
-    cardSelected: false,
-    cardName: '',
-    cardLink: ''
-  });
+  const [selectedCard, setSelectedCard] = React.useState();
 
   function handleEditAvatarClick () {
     setIsEditAvatarPopupOpen(true);
@@ -29,18 +24,10 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({
-      cardSelected: false,
-      cardName: '',
-      cardLink: ''
-    });
+    setSelectedCard(undefined);
   }
   function handleCardClick (card) {
-    setSelectedCard({
-      cardSelected: true,
-      cardName: card.name,
-      cardLink: card.link
-    });
+    setSelectedCard(card);
   }
 
   return (
@@ -65,6 +52,7 @@ function App() {
                   name="name"
                   minLength="2"
                   maxLength="40"
+                  placeholder="Имя"
                   required
               />
               <span className="form__input-error"></span>
@@ -75,6 +63,7 @@ function App() {
                   minLength="2"
                   maxLength="200"
                   name="about"
+                  placeholder="Занятие"
                   required
               />
               <span className="form__input-error"></span>
