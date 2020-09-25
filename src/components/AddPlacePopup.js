@@ -38,6 +38,7 @@ export default function AddPlacePopup(props) {
                         minLength="1"
                         maxLength="30"
                         required
+                        value={name}
                     />
                     <span className="form__input-error"></span>
                 </div>
@@ -49,6 +50,7 @@ export default function AddPlacePopup(props) {
                         placeholder="Ссылка на картинку"
                         type="url"
                         required
+                        value={link}
                     />
                     <span className="form__input-error"></span>
                 </div>
