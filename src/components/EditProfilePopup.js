@@ -35,7 +35,6 @@ export default function EditProfilePopup(props) {
                        isOpen={props.isOpen}
                        onClose={props.onClose}
                        onSubmit={handleSubmit}>
-            <>
                 <div className="form__field">
                     <input
                         onChange={handleNameChange}
@@ -62,7 +61,6 @@ export default function EditProfilePopup(props) {
                     />
                     <span className="form__input-error"></span>
                 </div>
-            </>
         </PopupWithForm>
     )
 }
