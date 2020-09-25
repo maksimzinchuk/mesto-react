@@ -55,21 +55,19 @@ function App() {
   function handleUpdateUser(values) {
     apiEntity.saveUserData(values)
         .then(data => {
-          setCurrentUser(data)
+          setCurrentUser(data);
+          closeAllPopups();
         })
         .catch(err => console.log(err));
-
-          closeAllPopups();
   }
 
   function handleUpdateAvatar(link) {
     apiEntity.avatarChange(link)
         .then(data => {
-          setCurrentUser(data)
+          setCurrentUser(data);
+          closeAllPopups();
         })
         .catch(err => console.log(err));
-
-          closeAllPopups();
   }
 
   function handleCardLike(card) {
@@ -98,10 +96,10 @@ function App() {
   function handleAddPlaceSubmit(inputs) {
     apiEntity.addCard(inputs)
         .then((newCard) => {
-          setCards([...cards, newCard]);
+          setCards([newCard, ...cards]);
+          closeAllPopups();
         })
         .catch(err => console.log(err));
-    closeAllPopups();
   }
 
   return (

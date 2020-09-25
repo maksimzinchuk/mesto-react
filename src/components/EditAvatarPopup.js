@@ -18,7 +18,6 @@ export default function EditAvatarPopup(props) {
                        isOpen={props.isOpen}
                        onClose={props.onClose}
                        onSubmit={handleSubmit}>
-            <>
                 <div className="form__field">
                     <input
                         ref={linkInput}
@@ -30,7 +29,6 @@ export default function EditAvatarPopup(props) {
                     />
                     <span className="form__input-error"></span>
                 </div>
-            </>
         </PopupWithForm>
     )
 }
