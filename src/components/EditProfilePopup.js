@@ -43,7 +43,7 @@ export default function EditProfilePopup(props) {
                         minLength="2"
                         maxLength="40"
                         placeholder="Имя"
-                        value={name}
+                        value={name ? name : ''}
                         required
                     />
                     <span className="form__input-error"></span>
@@ -56,7 +56,7 @@ export default function EditProfilePopup(props) {
                         maxLength="200"
                         name="about"
                         placeholder="Занятие"
-                        value={description}
+                        value={description ? description : ''}
                         required
                     />
                     <span className="form__input-error"></span>
